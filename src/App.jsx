@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import * as trackService from './services/trackService.js';
 import TrackList from './components/TrackList/TrackList.jsx';
 import TrackDetail from './components/TrackDetail/TrackDetail.jsx';
+import TrackForm from "./components/TrackForm/TrackForm.jsx";
 
 const App = () => {
   const [tracks, setTracks] = useState([]);
