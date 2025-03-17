@@ -10,7 +10,13 @@ const TrackList = (props) => {
                 ) : (
                     <ul>
                         {props.tracks.map((track) => {
-                            <li key={track._id}>{track.name}</li>
+                            <li
+                                key={track._id}
+                                style={{ cursor: 'pointer', color: '#646CFF' }}
+                                onClick={() => props.handleSelect(track)}
+                            >
+                                {track.name}
+                            </li>
                         })}
                     </ul>
                 )}
