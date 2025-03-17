@@ -1,10 +1,14 @@
 import { useState } from 'react';
 
 const TrackForm = (props) => {
-    const [formData, setFormData] = useState({
-        title: '',
-        artist: '',
-    });
+    const initialState = {
+      title: '',
+      artist: '',
+    };
+
+    const [formData, setFormData] = useState(
+      props.selected ? props.selected : initialState
+    );
 
     const handleChange = (evt) => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -34,7 +38,9 @@ const TrackForm = (props) => {
             onChange={handleChange}
             required
           />
-          <button type='submit'>Add New Track</button>
+          <button type='submit'>
+            {props.selected ? 'Update Track' : 'Add New Track'}
+          </button>
         </form>
       </div>
     );

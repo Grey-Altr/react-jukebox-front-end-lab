@@ -28,7 +28,8 @@ const App = () => {
     setIsFormOpen(false);
   };
 
-  const handleFormView = () => {
+  const handleFormView = (track) => {
+    if (!track._id) setSelected(null);
     setIsFormOpen(!isFormOpen);
   };
 
@@ -47,17 +48,42 @@ const App = () => {
     }
   };
 
+  const handleUpdateTrack = async (formData, trackId) => {
+    try {
+      const updatedTrack = await trackService.update(formData, trackId);
+
+      if (updatedTrack.err) {
+        throw new Error(updatedTrack.err);
+      }
+
+      const updatedTrackList = tracks.map((track) => (
+        track._id !== updatedTrack._id ? track : updatedTrack
+      ));
+
+      setTracks(updatedTrackList);
+      setSelected(updatedTrack);
+      setIsFormOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <TrackList
       tracks={tracks}
       handleSelect={handleSelect}
       handleFormView={handleFormView}
+      isFormOpen={isFormOpen}
       />
       {isFormOpen ? (
-        <TrackForm handleAddTrack={handleAddTrack}/>
+        <TrackForm
+          handleAddTrack={handleAddTrack}
+          selected={selected}
+          handleUpdateTrack={handleUpdateTrack}
+        />
       ) : (
-        <TrackDetail selected={selected} />
+        <TrackDetail selected={selected} handleFormView={handleFormView} />
       )}
     </>
   );
