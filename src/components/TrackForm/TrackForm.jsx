@@ -39,3 +39,5 @@ const TrackForm = (props) => {
       </div>
     );
 }
+
+export default TrackForm;
