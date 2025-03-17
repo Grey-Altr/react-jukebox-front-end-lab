@@ -40,10 +40,20 @@ const update = async (formData, trackId) => {
     }
 };
 
-console.log(await index());
+const deleteTrack = async (trackId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${trackId}`, {
+            method: 'DELETE',
+        });
+        return res.json();
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 export {
     index,
     create,
-    update
+    update,
+    deleteTrack
 };
