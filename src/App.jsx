@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import * as trackService from './services/trackService.js';
-import TrackList from './components/TrackList/TrackList.jsx';
-import TrackDetail from './components/TrackDetail/TrackDetail.jsx';
+import { useState, useEffect } from "react";
+import * as trackService from "./services/trackService.js";
+import TrackList from "./components/TrackList/TrackList.jsx";
+import TrackDetail from "./components/TrackDetail/TrackDetail.jsx";
 import TrackForm from "./components/TrackForm/TrackForm.jsx";
+import NowPlaying from "./components/NowPlaying/Nowplaying.jsx";
 
 const App = () => {
   const [tracks, setTracks] = useState([]);
@@ -57,9 +58,9 @@ const App = () => {
         throw new Error(updatedTrack.err);
       }
 
-      const updatedTrackList = tracks.map((track) => (
+      const updatedTrackList = tracks.map((track) =>
         track._id !== updatedTrack._id ? track : updatedTrack
-      ));
+      );
 
       setTracks(updatedTrackList);
       setSelected(updatedTrack);
@@ -88,10 +89,10 @@ const App = () => {
   return (
     <>
       <TrackList
-      tracks={tracks}
-      handleSelect={handleSelect}
-      handleFormView={handleFormView}
-      isFormOpen={isFormOpen}
+        tracks={tracks}
+        handleSelect={handleSelect}
+        handleFormView={handleFormView}
+        isFormOpen={isFormOpen}
       />
       {isFormOpen ? (
         <TrackForm
@@ -100,11 +101,14 @@ const App = () => {
           handleUpdateTrack={handleUpdateTrack}
         />
       ) : (
-        <TrackDetail
-        selected={selected}
-        handleFormView={handleFormView}
-        handleDeleteTrack={handleDeleteTrack}
-        />
+        <>
+          <TrackDetail
+            selected={selected}
+            handleFormView={handleFormView}
+            handleDeleteTrack={handleDeleteTrack}
+          />
+          <NowPlaying />
+        </>
       )}
     </>
   );
