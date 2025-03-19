@@ -98,6 +98,7 @@ const App = () => {
         handleSelect={handleSelect}
         handleFormView={handleFormView}
         isFormOpen={isFormOpen}
+        handleNowPlaying={handleNowPlaying}
       />
       {isFormOpen ? (
         <TrackForm
