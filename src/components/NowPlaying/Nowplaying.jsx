@@ -1,11 +1,13 @@
-const NowPlaying = () => {
+const NowPlaying = ({ trackPlayingId, tracks }) => {
+    const trackPlaying = tracks.find(track => track._id === trackPlayingId);
 
-    return (
+    return trackPlaying ? (
         <div>
-            <h1>Title</h1>
-            <h1>Artist</h1>
+            <h2>Now Playing</h2>
+            <h3>{trackPlaying.title}</h3>
+            <h3>{trackPlaying.artist}</h3>
         </div>
-    );
+    ) : null ;
 };
 
 export default NowPlaying;

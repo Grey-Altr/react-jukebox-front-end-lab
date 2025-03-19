@@ -9,6 +9,7 @@ const App = () => {
   const [tracks, setTracks] = useState([]);
   const [selected, setSelected] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [trackPlayingId, setTrackPlayingId] = useState(null);
 
   useEffect(() => {
     const fetchTracks = async () => {
@@ -86,6 +87,10 @@ const App = () => {
     }
   };
 
+  const handleNowPlaying = (trackId) => {
+    setTrackPlayingId(trackId);
+  };
+
   return (
     <>
       <TrackList
@@ -107,7 +112,7 @@ const App = () => {
             handleFormView={handleFormView}
             handleDeleteTrack={handleDeleteTrack}
           />
-          <NowPlaying />
+          <NowPlaying tracks={tracks} trackPlayingId={trackPlayingId}/>
         </>
       )}
     </>

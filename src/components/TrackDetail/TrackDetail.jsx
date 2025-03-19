@@ -2,15 +2,15 @@ const TrackDetail = (props) => {
     if (!props.selected) {
         return (
             <div>
-                <h1>NO DETAILS</h1>
+                <h3>NO DETAILS</h3>
             </div>
         );
     }
 
     return (
         <div>
-            <h1>{props.selected.name}</h1>
-            <h2>Artist: {props.selected.artist}</h2>
+            <h3>Title: {props.selected.title}</h3>
+            <h3>Artist: {props.selected.artist}</h3>
             <div>
                 <button onClick={() => props.handleFormView(props.selected)}>
                     Edit Track

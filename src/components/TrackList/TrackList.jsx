@@ -15,7 +15,10 @@ const TrackList = (props) => {
                                 style={{ cursor: 'pointer', color: '#646CFF' }}
                                 onClick={() => props.handleSelect(track)}
                             >
-                                {track.title}
+                                {track.artist} - {track.title}
+                                <button>
+                                    Play
+                                </button>
                             </li>
                         ))}
                     </ul>
