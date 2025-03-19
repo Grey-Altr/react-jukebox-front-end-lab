@@ -16,13 +16,18 @@ const TrackForm = (props) => {
 
     const handleSubmit = (evt) => {
       evt.preventDefault();
+      
+      if (props.selected) {
+        props.handleUpdateTrack(formData, props.selected._id);
+      } else {
       props.handleAddTrack(formData);
+      }
     };
 
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name"> Name </label>
+          <label htmlFor="name"> Title: </label>
           <input
             id="title"
             name="title"
@@ -30,7 +35,7 @@ const TrackForm = (props) => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="artist"> Artist </label>
+          <label htmlFor="artist"> Artist: </label>
           <input
             id="artist"
             name="artist"
